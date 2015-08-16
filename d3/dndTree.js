@@ -1,4 +1,4 @@
-
+////robschmuecker’s block #7880033 December 9, 2013 
 // Get JSON data
 treeJSON = d3.json("flare.json", function(error, treeData) {
 
