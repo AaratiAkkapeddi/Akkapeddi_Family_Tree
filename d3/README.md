@@ -1,4 +1,4 @@
-![Example 2](/example1.png)
-Format: ![Alt Text](url)
-![Example 1](/example2.png)
-Format: ![Alt Text](url)
+![alt text](/example1.png "Example 1")
+
+![alt text](/example2.png "Example 2")
+
