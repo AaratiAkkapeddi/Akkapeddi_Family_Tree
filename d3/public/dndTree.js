@@ -37,6 +37,7 @@ treeJSON = d3.json("flare.json", function(error, treeData) {
         visitFn(parent);
 
         var children = childrenFn(parent);
+        console.log(children);
         if (children) {
             var count = children.length;
             for (var i = 0; i < count; i++) {
@@ -145,7 +146,7 @@ treeJSON = d3.json("flare.json", function(error, treeData) {
     }
 
     // define the baseSvg, attaching a class for styling and the zoomListener
-    var baseSvg = d3.select("#tree-container").append("svg")
+    var baseSvg = d3.select("#tree").append("svg")
         .attr("width", viewerWidth)
         .attr("height", viewerHeight)
         .attr("class", "overlay")
