@@ -8,6 +8,7 @@ var express = require('express'),
     url = 'mongodb://localhost:27017/familytree',
     methodOverride = require('method-override'),
     mongoose = require('mongoose'),
+    Person = require('./models/person.js'),
     port = 3000;
     // mongoose.connect('mongodb://localhost/family_tree');
     // var db = mongoose.createConnection('mongodb://localhost/family_tree');
@@ -17,7 +18,7 @@ var express = require('express'),
     // server.db = db;
     // console.log('Ready For Action');
     // });
-
+var jsonPerson;
 
 
  /*<><><><><><><>MIDDLEWARE<><><><><><><><>*/
@@ -34,10 +35,12 @@ db.once('open', function(){
   console.log("Database is on!");
   server.listen(port, function(){
     console.log('Ready For Action');
-
+     Person.find({}, function(err,person){
+      jsonPerson = person;
+      console.log(jsonPerson + 'mew');
   });
 });
-
+});
 
 server.use(express.static('./public'));
 server.use(methodOverride('_method'));
@@ -54,8 +57,20 @@ server.use(bodyParser.urlencoded({extended:true}));
 
 
 server.get('/',function(req,res){
-  res.render('tree');
+  // newperson = {name:'aarati', birthday:12291992, age:22, alive:true, about:'hi'};
+  // newperson.save({})
+//   db.collection('people', function(err, collection) {
+//     console.log('pew');
+//   collection.find({},function(err,person){
+//     console.log(person);
+//     myData = person;
+//   });
+// });
+
+  res.render('tree',{jsonPerson: JSON.stringify(jsonPerson)});
 });
+
+var a = 'b';
 
 
 

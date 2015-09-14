@@ -1,7 +1,10 @@
 ////robschmuecker’s block #7880033 December 9, 2013 
 // Get JSON data
-treeJSON = d3.json("flare.json", function(error, treeData) {
 
+
+treeJSON = d3.json(JSON.stringify($("#hidden").text()), function(error, treeData) {
+    x = JSON.parse($("#hidden").text());
+    treeData = x[1];
     // Calculate total nodes, max label length
     var totalNodes = 0;
     var maxLabelLength = 0;
@@ -37,7 +40,7 @@ treeJSON = d3.json("flare.json", function(error, treeData) {
         visitFn(parent);
 
         var children = childrenFn(parent);
-        console.log(children);
+
         if (children) {
             var count = children.length;
             for (var i = 0; i < count; i++) {
@@ -48,6 +51,8 @@ treeJSON = d3.json("flare.json", function(error, treeData) {
 
     // Call visit function to establish maxLabelLength
     visit(treeData, function(d) {
+        console.log(d.name);
+        debugger;
         totalNodes++;
         maxLabelLength = Math.max(d.name.length, maxLabelLength);
 
@@ -442,6 +447,7 @@ treeJSON = d3.json("flare.json", function(error, treeData) {
         // Update the text to reflect whether node has children or not.
         node.select('text')
             .attr("x", function(d) {
+                console.log(d +'poew')
                 return d.children || d._children ? -30 : 30;
             })
             .attr("text-anchor", function(d) {
